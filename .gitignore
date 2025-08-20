@@ -1,0 +1,40 @@
+# Go build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.a
+*.o
+
+# Go modules and workspace
+go.sum
+go.work
+go.work.sum
+
+# Dependency directories
+/vendor/
+
+# Coverage reports
+*.coverprofile
+coverage.out
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# GoLand IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Editor swap/backup files
+*.swp
+*.swo
+*.bak
