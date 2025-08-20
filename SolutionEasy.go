@@ -55,3 +55,42 @@ func isValid2(s string) bool {
 	}
 	return len(stack) == 0
 }
+
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	if list1 == nil {
+		return list2
+	}
+	if list2 == nil {
+		return list1
+	}
+	if list1.Val < list2.Val {
+		list1.Next = mergeTwoLists(list1.Next, list2)
+		return list1
+	} else {
+		list2.Next = mergeTwoLists(list1, list2.Next)
+		return list2
+	}
+}
+
+func mergeTwoLists2(list1 *ListNode, list2 *ListNode) *ListNode {
+	dummy := &ListNode{}
+	op := dummy
+
+	for list1 != nil && list2 != nil {
+		if list1.Val <= list2.Val {
+			op.Next = list1
+			list1 = list1.Next
+		} else {
+			op.Next = list2
+			list2 = list2.Next
+		}
+		op = op.Next
+	}
+	if list1 != nil {
+		op.Next = list1
+	}
+	if list2 != nil {
+		op.Next = list2
+	}
+	return dummy.Next
+}
