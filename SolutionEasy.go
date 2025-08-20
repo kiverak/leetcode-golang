@@ -94,3 +94,26 @@ func mergeTwoLists2(list1 *ListNode, list2 *ListNode) *ListNode {
 	}
 	return dummy.Next
 }
+
+func climbStairs(n int) int {
+	if n == 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+	if n == 2 {
+		return 2
+	}
+
+	n1 := 1
+	n2 := 2
+	sum := 0
+
+	for i := 3; i <= n; i++ {
+		sum = n1 + n2
+		n1 = n2
+		n2 = sum
+	}
+	return sum
+}
