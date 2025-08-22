@@ -1,5 +1,7 @@
 package main
 
+import "container/list"
+
 func twoSum(nums []int, target int) []int {
 	indexMap := make(map[int]int)
 	for i, num := range nums {
@@ -128,4 +130,37 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 	}
 
 	return p.Val == q.Val && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
+}
+
+func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
+}
+
+func maxDepth2(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	queue := list.New()
+	queue.PushBack(root)
+	level := 0
+	for queue.Len() > 0 {
+		n := queue.Len()
+		for i := 0; i < n; i++ {
+			e := queue.Front()
+			queue.Remove(e)
+			node := e.Value.(*TreeNode)
+			if node.Left != nil {
+				queue.PushBack(node.Left)
+			}
+			if node.Right != nil {
+				queue.PushBack(node.Right)
+			}
+		}
+		level++
+	}
+	return level
 }
