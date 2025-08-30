@@ -1,6 +1,9 @@
 package main
 
-import "container/list"
+import (
+	"container/list"
+	"unicode"
+)
 
 func twoSum(nums []int, target int) []int {
 	indexMap := make(map[int]int)
@@ -163,4 +166,28 @@ func maxDepth2(root *TreeNode) int {
 		level++
 	}
 	return level
+}
+
+func countSegments(s string) int {
+	counter := 0
+	for i := 0; i < len(s); i++ {
+		ch := s[i]
+		if ch != ' ' && (i == 0 || s[i-1] == ' ') {
+			counter++
+		}
+	}
+	return counter
+}
+
+func countSegmentsUnicode2(s string) int {
+	counter := 0
+	var prevIsSpace = true
+	for _, r := range s {
+		if !unicode.IsSpace(r) && prevIsSpace {
+			counter++
+		}
+		prevIsSpace = unicode.IsSpace(r)
+	}
+
+	return counter
 }
